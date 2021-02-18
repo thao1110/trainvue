@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todo Vue</title>
+  <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+  <base href="/">
+</head>
+
+<body>
+  <section class="todoapp">
+    <header class="header">
+      <h1 v-text="title"></h1>
+      <input class="new-todo" placeholder="What needs to be done?" v-on:keyup.enter="createTodo" autofocus/>
+    </header>
+    <ul class="todo-list">
+      <li v-for="todo in todos":class="{ completed:todo.isDone, editing: todo === editing }">
+        <div class="view">
+          <input class="toggle" type="checkbox" v-model="todo.isDone"/>
+          <label @dblclick="startEditing(todo)">{{ todo.text }}</label>
+          <button class="destroy" @click="destroyTodo(todo)"></button>
+        </div>
+        <input class="edit" 
+          @keyup.esc="cancelEditing"
+          @keyup.enter="finishEditing"
+          @blur="finishEditing"
+          value="todo.text"/>
+      </li>
+    </ul>
+  </section>
+
+
+  <script src="node_modules/vue/dist/vue.js"></script>
+  <script src="node_modules/vue-router/dist/vue-router.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
