@@ -1,3 +1,4 @@
+const axios = require('axios');
 const todoapp = new Vue({
   el: '.todoapp',
   data: {
@@ -8,6 +9,10 @@ const todoapp = new Vue({
       { text: 'Build something awesome', isDone:false }
     ],
     editing: null,
+    mounted: function() {
+      axios.get('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => console.log(response))
+    }
   },
   methods: {
     createTodo(event) {
